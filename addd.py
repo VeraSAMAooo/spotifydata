@@ -14,6 +14,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 
+
+#注册并且获取id和secret，此时的token可以直接用print获得
 username='tlfzphv6cc0volzv1qdzci27f'
 scope = 'user-library-read'
 token=util.prompt_for_user_token(username,scope,
@@ -24,10 +26,12 @@ token=util.prompt_for_user_token(username,scope,
 #BQAzVGaXSahc0wCXXItq5Kjf5R_Iw0LLOlUC_huL0NpKbBAQMTARjqvB18-FZeFevv--KOb9KQBA7rnYejnZ98Nl9q9O5_pMrnjaFSv9hJ1QysSLz5Y6KBu-UozFeNPMo5xMpVT1C7ClgQsCeAfWjuKsYAn1ZKJirjuxR9h1508sCJU
 headers = {"Authorization": "Bearer {}".format(token)}
 
+#在终端输入以下命令，其中bearer中的内容是获取的token,建立连接
 '''curl --request GET \
     'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V' \
      --header "Authorization: Bearer BQAzVGaXSahc0wCXXItq5Kjf5R_Iw0LLOlUC_huL0NpKbBAQMTARjqvB18-FZeFevv--KOb9KQBA7rnYejnZ98Nl9q9O5_pMrnjaFSv9hJ1QysSLz5Y6KBu-UozFeNPMo5xMpVT1C7ClgQsCeAfWjuKsYAn1ZKJirjuxR9h1508sCJU"
 '''
+#获取自己的playlist信息
 responses = requests.get("https://api.spotify.com/v1/playlists/37i9dQZF1DWTwnEm1IYyoj", headers=headers)
 myjson_data = json.loads(responses.text)
 
